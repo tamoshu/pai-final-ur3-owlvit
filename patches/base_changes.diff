@@ -1,0 +1,49 @@
+diff --git a/ros2srrc_execution/CMakeLists.txt b/ros2srrc_execution/CMakeLists.txt
+index 9c9bae5..25df998 100644
+--- a/ros2srrc_execution/CMakeLists.txt
++++ b/ros2srrc_execution/CMakeLists.txt
+@@ -45,7 +45,7 @@ find_package(yaml-cpp REQUIRED)
+ find_package(ament_index_cpp REQUIRED)
+ 
+ # REQUIRED to -> ABB:
+-find_package(abb_robot_msgs REQUIRED)
++# find_package(abb_robot_msgs REQUIRED)
+ 
+ # REQUIRED to -> Robotiq:
+ find_package(ros2_robotiqgripper REQUIRED)
+@@ -105,7 +105,7 @@ ament_target_dependencies(
+   std_msgs
+   rclcpp_action
+   ros2srrc_data
+-  abb_robot_msgs
++  # abb_robot_msgs
+   yaml-cpp
+   ament_index_cpp
+ )
+diff --git a/ros2srrc_execution/python/ExecuteProgram.py b/ros2srrc_execution/python/ExecuteProgram.py
+index 03163ad..4eb13e0 100755
+--- a/ros2srrc_execution/python/ExecuteProgram.py
++++ b/ros2srrc_execution/python/ExecuteProgram.py
+@@ -52,10 +52,19 @@ from parallelGripper import parallelGR
+ 
+ # IMPORT -> EE:
+ sys.path.append(PATH_EE)
+-from zimmer_abb import ZimmerGRIPPER
+-from schunk_abb import SchunkGRIPPER
++try:
++    from zimmer_abb import ZimmerGRIPPER
++except ImportError:
++    ZimmerGRIPPER = None  # abb_robot_msgs not installed (UR-only setup)
++try:
++    from schunk_abb import SchunkGRIPPER
++except ImportError:
++    SchunkGRIPPER = None  # abb_robot_msgs not installed (UR-only setup)
+ from robotiq_ur import RobotiqGRIPPER
+-from vgr_abb import vgrABB
++try:
++    from vgr_abb import vgrABB
++except ImportError:
++    vgrABB = None  # abb_robot_msgs not installed (UR-only setup)
+ 
+ # IMPORT ROS 2 Custom Messages:
+ from ros2srrc_data.msg import Action

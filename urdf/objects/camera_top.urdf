@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot name="camera_top">
+  <link name="camera_top">
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <geometry><box size="0.05 0.05 0.05"/></geometry>
+    </visual>
+  </link>
+  <gazebo reference="camera_top">
+    <turnGravityOff>true</turnGravityOff>
+    <sensor type="camera" name="cam_top">
+      <pose>0 0 0 0 1.5708 0</pose>
+      <update_rate>5</update_rate>
+      <camera>
+        <horizontal_fov>1.047</horizontal_fov>
+        <image><width>640</width><height>480</height><format>R8G8B8</format></image>
+        <clip><near>0.1</near><far>5.0</far></clip>
+      </camera>
+      <plugin name="camera_plugin" filename="libgazebo_ros_camera.so">
+        <ros><namespace>camera_top</namespace></ros>
+        <camera_name>cam</camera_name>
+        <frame_name>camera_top</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <gazebo>
+    <static>true</static>
+  </gazebo>
+</robot>
