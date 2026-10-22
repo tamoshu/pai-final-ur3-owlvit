@@ -15,7 +15,7 @@ MIN_SCORE = 0.05
 MAX_BOX_PX = 45             # ブロックの枠の最大の辺(画素)。トレイ(約65)や台(175以上)を除外する
 
 target = sys.argv[2] if len(sys.argv) > 2 else "a red block"
-distractors = sys.argv[3:] or ["a wooden table", "a white box", "a robot arm", "a gray plate"]
+distractors = sys.argv[3:] or ["a wooden table", "a robot arm"]
 queries = [target] + distractors
 name = "google/owlvit-base-patch32"
 processor = OwlViTProcessor.from_pretrained(name)
