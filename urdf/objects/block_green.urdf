@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot name="block_green">
+  <link name="block_green">
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.00002" ixy="0" ixz="0" iyy="0.00002" iyz="0" izz="0.00002"/>
+    </inertial>
+    <visual>
+      <geometry><box size="0.04 0.04 0.04"/></geometry>
+    </visual>
+    <collision>
+      <geometry><box size="0.04 0.04 0.04"/></geometry>
+    </collision>
+  </link>
+  <gazebo reference="block_green">
+    <material>Gazebo/Green</material>
+  </gazebo>
+</robot>
