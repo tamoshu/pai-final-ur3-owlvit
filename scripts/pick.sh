@@ -28,8 +28,6 @@ attach() {
 
 moveg 0                       # 全開
 robmove LIN $PX $PY 0.6826484   # ブロックの真上へ
-robmove LIN $PX $PY 0.60
-robmove LIN $PX $PY 0.56
 robmove LIN $PX $PY 0.54        # 指がブロックの両側に入る高さ
 moveg 50                      # 閉じる
 attach                        # LinkAttacherで固定
